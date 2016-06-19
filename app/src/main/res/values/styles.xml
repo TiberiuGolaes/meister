@@ -1,0 +1,87 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme" parent="Base.AppTheme" />
+
+    <style name="BaseButton" parent="android:Widget.Holo.Light.Button">
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:minHeight">@dimen/btn_min_height</item>
+        <item name="android:minWidth">@dimen/btn_min_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/space_micro</item>
+        <item name="android:paddingRight">@dimen/space_micro</item>
+        <item name="android:drawablePadding">@dimen/space_micro</item>
+        <item name="android:textAllCaps">true</item>
+        <!-- TODO: text selector, background selector -->
+        <item name="android:background">@android:color/transparent</item>
+
+    </style>
+
+    <style name="Button" parent="BaseButton" />
+
+    <style name="Button.EntryLogin">
+        <item name="android:textColor">@color/floodlight_blue</item>
+        <item name="android:layout_marginRight">@dimen/space_large</item>
+        <item name="android:layout_marginLeft">@dimen/space_large</item>
+        <item name="android:layout_marginTop">@dimen/space_small</item>
+        <item name="android:layout_marginBottom">@dimen/space_small</item>
+        <item name="android:background">@drawable/button_login</item>
+    </style>
+
+    <style name="BaseEditText" parent="android:Widget.Holo.EditText">
+        <item name="android:paddingLeft">@dimen/space_small</item>
+        <item name="android:paddingRight">@dimen/space_small</item>
+        <!--<item name="android:textCursorDrawable">@drawable/edit_text_cursor</item>-->
+        <item name="android:textColorHint">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/floodlight_blue</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawablePadding">@dimen/space_micro</item>
+    </style>
+
+    <style name="EditText" parent="BaseEditText" />
+
+
+    <style name="EditText.Login">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">start</item>
+        <item name="android:layout_marginLeft">@dimen/space_small</item>
+        <item name="android:layout_marginRight">@dimen/space_small</item>
+        <item name="android:textColor">@color/floodlight_blue</item>
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="android:backgroundTint">@color/floodlight_blue</item>
+        <item name="android:textColorSecondary">@android:color/transparent</item>
+    </style>
+
+    <style name="BaseTextView" parent="android:Widget.Holo.TextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minHeight">@dimen/text_min_height</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawablePadding">@dimen/space_micro</item>
+    </style>
+
+    <style name="TextView" parent="BaseTextView" />
+
+    <style name="TextView.Small">
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+
+    <style name="TextView.Small.Blue">
+        <item name="android:textColor">@color/floodlight_blue</item>
+    </style>
+</resources>

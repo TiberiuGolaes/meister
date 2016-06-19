@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Meister</string>
+    <string name="facebook_app_id">1721908281396141</string>
+    <string name="login_text">Login</string>
+    <string name="register_text">Register</string>
+    <string name="register_email">Email</string>
+    <string name="email_hint">Email adress</string>
+    <string name="register_password">Password</string>
+    <string name="password_hint">Password(minimum 8 characters)</string>
+    <string name="password_confirm_hint">Confirm password(minimum 8 characters)</string>
+    <string name="error_email">Please enter a valid e-mail</string>
+    <string name="error_password">Please provide a viable password ( minimum 8 characters)</string>
+    <string name="error_password_missmatch">Your passwords don\'t match</string>
+    <string name="button_forgot_passowrd">Forgot password?</string>
+    <string name="button_reset_password">Reset Password</string>
+    <string name="password_missmatch">Please check your passwords</string>
+</resources>
