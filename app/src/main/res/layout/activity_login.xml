@@ -181,7 +181,7 @@
             <com.nalatarate.meister.utils.PasswordEditText
                 android:id="@+id/passwordRegister"
                 style="@style/EditText.Login"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 android:inputType="textPassword"
                 android:nextFocusLeft="@id/emailRegister"
                 android:nextFocusUp="@id/emailRegister"
@@ -213,7 +213,7 @@
             style="@style/Button.EntryLogin"
             android:layout_below="@+id/register_password2_wrapper"
             android:layout_marginTop="@dimen/space_small"
-            android:text="@string/login_text" />
+            android:text="@string/register_text" />
 
     </RelativeLayout>
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import com.facebook.AccessToken
 import com.facebook.FacebookSdk
 import com.facebook.login.LoginManager
+import com.nalatarate.meister.api.Api
 import com.nalatarate.meister.utils.ProgressDialogFragment
 
 /**
@@ -18,6 +19,7 @@ open class MeisterApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         FacebookSdk.sdkInitialize(applicationContext)
+        Api.with(true)
     }
 
     companion object {

@@ -6,10 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import com.nalatarate.meister.MeisterApplication
 
 
-/**
- * Created by tariq on 22/09/2015.
- */
-
 class EntryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
