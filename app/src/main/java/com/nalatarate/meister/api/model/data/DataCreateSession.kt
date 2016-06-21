@@ -6,6 +6,4 @@ import com.nalatarate.meister.api.meta.Data
 /**
  * Created by Tiberiu on 6/20/2016.
  */
-internal class DataCreateSession(
-                                 @Expose val userId: String,
-                                 @Expose val session: String) : Data
+internal class DataCreateSession(@Expose val userSession: DataSession) : Data

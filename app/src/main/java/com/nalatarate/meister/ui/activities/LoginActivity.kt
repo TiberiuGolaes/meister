@@ -146,7 +146,7 @@ class LoginActivity : BaseActivity() {
             }
 
             override fun onNext(session: DataCreateSession){
-                Log.d("Results", "${session.session},${session.userId}")
+                Log.d("Results", "${session.userSession.sessionId},${session.userSession.userId}")
                 MeisterApplication.closeProgressBar()
                 startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             }
@@ -168,7 +168,7 @@ class LoginActivity : BaseActivity() {
                 }
 
                 override fun onNext(session: DataCreateSession){
-                    Log.d("Results", "${session.session},${session.userId}")
+                    Log.d("Results", "${session.userSession.sessionId},${session.userSession.userId}")
                     MeisterApplication.closeProgressBar()
                     startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                 }

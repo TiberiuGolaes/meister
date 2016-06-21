@@ -32,9 +32,9 @@ object Api {
 
     internal val gson = GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
-            .registerTypeAdapter(SimpleArrayMapJsonSerializer.TYPE, SimpleArrayMapJsonSerializer())
-            .registerTypeAdapter(Date::class.java, DateSerializer(SIMPLE_DATE_FORMAT))
-            .registerTypeAdapter(Date::class.java, DateDeserializer(SIMPLE_DATE_FORMAT, SIMPLE_DATE_FORMAT_BACKUP))
+         //   .registerTypeAdapter(SimpleArrayMapJsonSerializer.TYPE, SimpleArrayMapJsonSerializer())
+         //   .registerTypeAdapter(Date::class.java, DateSerializer(SIMPLE_DATE_FORMAT))
+         //   .registerTypeAdapter(Date::class.java, DateDeserializer(SIMPLE_DATE_FORMAT, SIMPLE_DATE_FORMAT_BACKUP))
             .create()
 
     @JvmStatic
