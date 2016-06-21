@@ -1,12 +1,14 @@
 package com.nalatarate.meister
 
 import android.app.Application
+import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.facebook.AccessToken
 import com.facebook.FacebookSdk
 import com.facebook.login.LoginManager
 import com.nalatarate.meister.api.Api
+import com.nalatarate.meister.api.PrefManager
 import com.nalatarate.meister.utils.ProgressDialogFragment
 
 /**
@@ -26,8 +28,13 @@ open class MeisterApplication : Application() {
         lateinit var instance: MeisterApplication
         var progressBar: ProgressDialogFragment? = null
 
-        fun isLoggedIn() : Boolean{
-            return false
+        fun isLoggedIn(context: Context): Boolean {
+            if(PrefManager.getInstance(context).sessionId !=null) {
+                return true
+            }
+            else{
+                return false
+            }
         }
 
         fun FBLogout() {

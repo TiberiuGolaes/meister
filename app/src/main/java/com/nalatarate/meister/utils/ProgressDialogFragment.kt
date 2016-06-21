@@ -25,6 +25,7 @@ class ProgressDialogFragment : DialogFragment() {
         return v
     }
 
+
     override fun onStart() {
         super.onStart()
         var dialog = dialog

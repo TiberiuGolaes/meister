@@ -13,6 +13,7 @@ import com.facebook.login.LoginResult
 import com.nalatarate.meister.MeisterApplication
 import com.nalatarate.meister.R
 import com.nalatarate.meister.api.model.data.DataCreateSession
+import com.nalatarate.meister.api.model.data.DataSession
 import com.nalatarate.meister.api.requester.SessionRequester
 import com.nalatarate.meister.utils.InertObserver
 import kotlinx.android.synthetic.main.activity_login.*
@@ -136,8 +137,8 @@ class LoginActivity : BaseActivity() {
 
     fun login() {
         MeisterApplication.showProgressBar(this@LoginActivity)
-        SessionRequester.login(emailLogin.text.toString(), passwordLogin.text.toString(), "ABCDEFGH12345678")
-                .subscribeOn(Schedulers.io()).subscribe(object : InertObserver<DataCreateSession>() {
+        SessionRequester.login(emailLogin.text.toString(), passwordLogin.text.toString())
+                .subscribeOn(Schedulers.io()).subscribe(object : InertObserver<DataSession>() {
 
 
             override fun onError(e: Throwable?) {
@@ -145,8 +146,8 @@ class LoginActivity : BaseActivity() {
                 Snackbar.make(btnLoginConfirm, "${e?.message}", Snackbar.LENGTH_LONG)
             }
 
-            override fun onNext(session: DataCreateSession){
-                Log.d("Results", "${session.userSession.sessionId},${session.userSession.userId}")
+            override fun onNext(session: DataSession){
+                Log.d("Results", "${session.sessionId},${session.userId}")
                 MeisterApplication.closeProgressBar()
                 startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             }
@@ -159,16 +160,16 @@ class LoginActivity : BaseActivity() {
 
         fun register() {
             MeisterApplication.showProgressBar(this@LoginActivity)
-            SessionRequester.register(emailRegister.text.toString(), passwordRegister.text.toString(), "ABCDEFGH12345678")
-                    .subscribeOn(Schedulers.io()).subscribe(object : InertObserver<DataCreateSession>() {
+            SessionRequester.register(emailRegister.text.toString(), passwordRegister.text.toString())
+                    .subscribeOn(Schedulers.io()).subscribe(object : InertObserver<DataSession>() {
 
                 override fun onError(e: Throwable?) {
                     MeisterApplication.closeProgressBar()
-                    Snackbar.make(btnLoginConfirm, "${e?.message}", Snackbar.LENGTH_LONG)
+                    Snackbar.make(btnRegisterConfirm, "${e?.message}", Snackbar.LENGTH_LONG)
                 }
 
-                override fun onNext(session: DataCreateSession){
-                    Log.d("Results", "${session.userSession.sessionId},${session.userSession.userId}")
+                override fun onNext(session: DataSession){
+                    Log.d("Results", "${session.sessionId},${session.userId}")
                     MeisterApplication.closeProgressBar()
                     startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                 }

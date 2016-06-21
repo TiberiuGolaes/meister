@@ -12,7 +12,7 @@ class EntryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         title = null
         val intent: Intent
-        if (!MeisterApplication.isLoggedIn()) {
+        if (!MeisterApplication.isLoggedIn(this@EntryActivity)) {
             intent = Intent(this, LoginActivity::class.java)
         } else {
             intent = Intent(this, HomeActivity::class.java)

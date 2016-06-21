@@ -24,7 +24,6 @@ import java.util.concurrent.TimeUnit
  * Created by Tiberiu on 6/19/2016.
  */
 object Api {
-
     private const val ZULU_DATE = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     private const val ZULU_DATE_MILLIS = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     private val SIMPLE_DATE_FORMAT = SimpleDateFormat(ZULU_DATE, Locale.UK).apply { timeZone = TimeZone.getTimeZone("UTC") }
