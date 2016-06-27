@@ -7,11 +7,17 @@
     <string name="email_hint">Email adress</string>
     <string name="register_password">Password</string>
     <string name="password_hint">Password(minimum 8 characters)</string>
-    <string name="password_confirm_hint">Confirm password(minimum 8 characters)</string>
+    <string name="password_confirm_hint">Confirm password</string>
     <string name="error_email">Please enter a valid e-mail</string>
     <string name="error_password">Please provide a viable password ( minimum 8 characters)</string>
     <string name="error_password_missmatch">Your passwords don\'t match</string>
     <string name="button_forgot_passowrd">Forgot password?</string>
     <string name="button_reset_password">Reset Password</string>
     <string name="password_missmatch">Please check your passwords</string>
+    <string name="user_description">Description</string>
+    <string name="user_sports">Sports</string>
+    <string name="user_edit">Edit</string>
+    <string name="user_done">Done</string>
+    <string name="action_logout">Log out</string>
+    <string name="menu_message">Messages</string>
 </resources>

@@ -18,21 +18,23 @@ const val PROGRESS_FRAGMENT_TAG = "progress"
 
 open class MeisterApplication : Application() {
 
+
     override fun onCreate() {
         super.onCreate()
         FacebookSdk.sdkInitialize(applicationContext)
-        Api.with(true)
+        PrefManager.saveContext(applicationContext)
+        Api.with(applicationContext, true)
     }
 
     companion object {
-        lateinit var instance: MeisterApplication
+
+
         var progressBar: ProgressDialogFragment? = null
 
-        fun isLoggedIn(context: Context): Boolean {
-            if(PrefManager.getInstance(context).sessionId !=null) {
+        fun isLoggedIn(): Boolean {
+            if (PrefManager.sessionId != null) {
                 return true
-            }
-            else{
+            } else {
                 return false
             }
         }

@@ -12,6 +12,19 @@
 
     <style name="AppTheme" parent="Base.AppTheme" />
 
+    <style name="Base.LoginTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="titleTextColor">@color/floodlight_blue</item>
+        <item name="colorAccent">@color/floodlight_blue</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+
+    <style name="LoginTheme" parent="Base.LoginTheme" />
+
+
+
     <style name="BaseButton" parent="android:Widget.Holo.Light.Button">
         <item name="android:textSize">@dimen/text_body</item>
         <item name="android:minHeight">@dimen/btn_min_height</item>
@@ -39,6 +52,15 @@
         <item name="android:background">@drawable/button_login</item>
     </style>
 
+    <style name="Button.FirstLogin">
+        <item name="android:textColor">@color/floodlight_blue</item>
+        <item name="android:layout_marginRight">@dimen/space_large</item>
+        <item name="android:layout_marginLeft">@dimen/space_large</item>
+        <item name="android:layout_marginTop">@dimen/space_small</item>
+        <item name="android:layout_marginBottom">@dimen/space_small</item>
+        <item name="android:background">@drawable/button_first</item>
+    </style>
+
     <style name="BaseEditText" parent="android:Widget.Holo.EditText">
         <item name="android:paddingLeft">@dimen/space_small</item>
         <item name="android:paddingRight">@dimen/space_small</item>
@@ -60,7 +82,7 @@
         <item name="android:layout_marginLeft">@dimen/space_small</item>
         <item name="android:layout_marginRight">@dimen/space_small</item>
         <item name="android:textColor">@color/floodlight_blue</item>
-        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="android:textColorHint">@color/light_grey</item>
         <item name="android:backgroundTint">@color/floodlight_blue</item>
         <item name="android:textColorSecondary">@android:color/transparent</item>
     </style>

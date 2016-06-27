@@ -11,6 +11,7 @@
     <dimen name="space_medium_large">36dp</dimen>
     <dimen name="space_large">48dp</dimen>
     <dimen name="space_huge">72dp</dimen>
+    <dimen name="logo_size">120dp</dimen>
 
     <!-- Text -->
     <dimen name="text_min_height">@dimen/space_medium</dimen>

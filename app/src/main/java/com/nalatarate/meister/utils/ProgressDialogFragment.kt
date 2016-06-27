@@ -1,5 +1,6 @@
 package com.nalatarate.meister.utils
 
+import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -21,10 +22,9 @@ class ProgressDialogFragment : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater?.inflate(R.layout.progress_dialog, container, false)
+        val v = inflater?.inflate(R.layout.progressbar_dialog, container, false)
         return v
     }
-
 
     override fun onStart() {
         super.onStart()

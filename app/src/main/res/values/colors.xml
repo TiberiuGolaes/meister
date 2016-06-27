@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#00A7FF</color>
     <color name="white">#FFFFFF</color>
+    <color name="light_grey">#D3D3D3</color>
     <color name="floodlight_blue">#6ACFFB</color>
+    <color name="dark_blue">#191981</color>
     <color name="facebook_blue">#3B5998</color>
 </resources>

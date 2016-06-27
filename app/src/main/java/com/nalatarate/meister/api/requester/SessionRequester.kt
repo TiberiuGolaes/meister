@@ -1,5 +1,7 @@
 package com.nalatarate.meister.api.requester
 
+import android.util.Log
+import com.nalatarate.meister.MeisterApplication
 import com.nalatarate.meister.api.Api
 import com.nalatarate.meister.api.PrefManager
 import com.nalatarate.meister.api.model.body.BodyUserRegisterLogin
@@ -17,32 +19,20 @@ object SessionRequester {
 
     @JvmStatic
     @JvmOverloads
-    internal fun login(email: String, password: String): Observable<DataSession> =
-            Observable.create(Observable.OnSubscribe<BodyUserRegisterLogin> { subscriber ->
-                try {
-                    subscriber.onNext(BodyUserRegisterLogin(email, password, "", PrefManager.getInstance(Api.mContext).getInstallationIDSync().base64()))
-                    subscriber.onCompleted()
-                } catch (e: Exception) {
-                    subscriber.onError(e)
-                }
-            }).subscribeOn(Schedulers.io()).cache()
+    internal fun login(email: String, password: String): Observable<DataSession>
+            = PrefManager.getInstallationID().map {
+                devId -> BodyUserRegisterLogin(email, password, "", devId) }
                     .flatMap { service.login(it) }
-                    .flatMap{ PrefManager.getInstance(Api.mContext).saveSession(it.data)}
+                    .flatMap { PrefManager.saveSession(it.data) }
                     .map { it.userSession }
 
 
     @JvmStatic
     @JvmOverloads
     internal fun register(email: String, password: String): Observable<DataSession> =
-            Observable.create(Observable.OnSubscribe<BodyUserRegisterLogin> { subscriber ->
-                try {
-                    subscriber.onNext(BodyUserRegisterLogin(email, password, "", PrefManager.getInstance(Api.mContext).getInstallationIDSync().base64()))
-                    subscriber.onCompleted()
-                } catch (e: Exception) {
-                    subscriber.onError(e)
-                }
-            }).subscribeOn(Schedulers.io()).cache()
+            PrefManager.getInstallationID().map {
+                devId -> BodyUserRegisterLogin(email, password, "", devId) }
                     .flatMap { service.register(it) }
-                    .flatMap{ PrefManager.getInstance(Api.mContext).saveSession(it.data)}
+                    .flatMap {PrefManager.saveSession(it.data) }
                     .map { it.userSession }
 }

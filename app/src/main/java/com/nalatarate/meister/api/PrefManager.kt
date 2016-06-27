@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import android.text.TextUtils
+import android.util.Log
 import com.nalatarate.meister.api.model.data.DataCreateSession
 import okio.Buffer
 import okio.ByteString
@@ -18,42 +19,31 @@ import java.util.*
 private const val INSTALLATION_ID = "installation_id"
 private const val SESSION = "session_id"
 private const val USER = "user_id"
+private const val USER_DESCRIPTION = "user_description"
 
-class PrefManager(context: Context) {
-
-    constructor(context: Context, file: String = "secure") : this(context) {
-        this.file = file
-    }
+object PrefManager {
 
     lateinit private var mPreferences: SharedPreferences
     lateinit private var mEdit: SharedPreferences.Editor
     var file = "secure"
+    lateinit var mContext : Context
 
-    init {
-        mPreferences = context.getSharedPreferences(file, Context.MODE_PRIVATE)
+    internal fun saveContext(context: Context){
+        mContext = context
+        mPreferences = mContext.getSharedPreferences(file, Context.MODE_PRIVATE)
         mEdit = mPreferences.edit()
-    }
-
-    companion object {
-
-        private var instance: PrefManager? = null
-
-        @JvmStatic
-        @Synchronized fun getInstance(context: Context): PrefManager {
-            if (instance == null) {
-                instance = PrefManager(context)
-            }
-            return instance!!
-        }
-
-
     }
 
     internal fun saveSession(dataSession: DataCreateSession) =
             Observable.create<DataCreateSession> {
-                if (it.isUnsubscribed) return@create
+                if (it.isUnsubscribed) {
+                    Log.d("STATUS", "UNSUBSCRIBED")
+                    return@create
+                }
+                Log.d("STATUS", "SAVING SESSION")
                 setSessionId(dataSession.userSession.sessionId)
                 setUserId(dataSession.userSession.userId)
+                Log.d("STATUS", "SAVED SESSION")
                 it.onNext(dataSession)
                 it.onCompleted()
             }
@@ -67,10 +57,24 @@ class PrefManager(context: Context) {
 
     fun setSessionId(id: String){
         mEdit.putString(SESSION, id).apply()
+        mEdit.commit()
+    }
+
+    fun clearSession(){
+        mEdit.remove(SESSION)
     }
 
     fun setUserId(id: String){
         mEdit.putString(USER, id).apply()
+        mEdit.commit()
+    }
+
+    val description: String?
+        get() = mPreferences.getString(USER_DESCRIPTION, "")
+
+    fun setDescription(descr : String){
+        mEdit.putString(USER_DESCRIPTION, descr)
+        mEdit.commit()
     }
 
 
@@ -79,26 +83,14 @@ class PrefManager(context: Context) {
         val androidID = androidId
         val randomString = getRandomString(random)
 
+
         val buffer = Buffer().write(androidID).write(randomString)
         return buffer.readByteString()
     }
 
     val androidId: ByteString
-        get() = ByteString.of(*Arrays.copyOf(androidIdBuffer.write(deviceId).readByteArray(), 64))
+        get() = ByteString.of(*Arrays.copyOf(Buffer().write(deviceId).readByteArray(), 64))
 
-
-    val androidIdBuffer: Buffer
-        get() {
-            val androidId = mPreferences.getString(INSTALLATION_ID, null)
-            val result: ByteString
-            if (!TextUtils.isEmpty(androidId)) {
-                result = ByteString.encodeUtf8(androidId.replace("android_id", ""))
-            } else {
-                result = ByteString.encodeUtf8(mPreferences.getString(INSTALLATION_ID, null).replace("android_id", ""))
-            }
-
-            return Buffer().write(result)
-        }
 
     val deviceId: ByteString
         get() {
@@ -117,13 +109,21 @@ class PrefManager(context: Context) {
     }
 
     internal fun getInstallationIDSync(): ByteString {
-        val installIDBase64 = mPreferences.getString(INSTALLATION_ID, null)
-        if (!TextUtils.isEmpty(installIDBase64)) {
-            return ByteString.decodeBase64(installIDBase64)
+        if( mPreferences.getString(INSTALLATION_ID, null) != null){
+            Log.d("STATUS", "NOT NULL")
+            val installIDBase64 = mPreferences.getString(INSTALLATION_ID, null)
+            if (!TextUtils.isEmpty(installIDBase64)) {
+                return ByteString.decodeBase64(installIDBase64)
+            }
+            else return ByteString.EMPTY
         }
-        val installationID = generateInstallationID()
-        mEdit.putString(INSTALLATION_ID, installationID.base64()).apply()
-        return installationID
+        else {
+            Log.d("STATUS", "IS NULL")
+            val installationID = generateInstallationID()
+            Log.d("STATUS", installationID.base64())
+            mEdit.putString(INSTALLATION_ID, installationID.base64()).apply()
+            return installationID
+        }
     }
 
     internal fun getInstallationID(): Observable<String> {

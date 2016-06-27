@@ -6,9 +6,7 @@ import android.support.annotation.VisibleForTesting
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import com.nalatarate.meister.BuildConfig
-import com.nalatarate.meister.api.serializer.DateDeserializer
-import com.nalatarate.meister.api.serializer.DateSerializer
-import com.nalatarate.meister.api.serializer.SimpleArrayMapJsonSerializer
+
 
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
@@ -24,6 +22,7 @@ import java.util.concurrent.TimeUnit
  * Created by Tiberiu on 6/19/2016.
  */
 object Api {
+    lateinit var mContext : Context
     private const val ZULU_DATE = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     private const val ZULU_DATE_MILLIS = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     private val SIMPLE_DATE_FORMAT = SimpleDateFormat(ZULU_DATE, Locale.UK).apply { timeZone = TimeZone.getTimeZone("UTC") }
@@ -39,7 +38,8 @@ object Api {
     @JvmStatic
     internal lateinit var retrofit: Retrofit
 
-    internal fun with( debug: Boolean = false) {
+    internal fun with(context: Context, debug: Boolean = false) {
+        mContext = context
         val factory = DefaultRetrofitFactory()
         val client = factory.setupClient(debug)
         retrofit = factory.createRetrofit(client)

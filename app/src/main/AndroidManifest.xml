@@ -21,7 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.LoginActivity" />
+        <activity android:name=".ui.activities.FirstActivity" />
+        <activity android:name=".ui.activities.LoginActivity"
+            android:theme="@style/LoginTheme"/>
+        <activity android:name=".ui.activities.RegisterActivity"
+            android:theme="@style/LoginTheme"/>
+        <activity android:name=".ui.activities.ForgotPasswordActivity"
+            android:theme="@style/LoginTheme"/>
         <activity android:name=".ui.activities.HomeActivity" />
 
         <meta-data

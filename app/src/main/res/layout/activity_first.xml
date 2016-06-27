@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_floodlight"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/initialView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/Button.FirstLogin"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/space_large"
+            android:text="@string/login_text" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            style="@style/Button.FirstLogin"
+            android:layout_below="@+id/btnLogin"
+            android:text="@string/register_text" />
+
+        <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/btnFacebook"
+            style="@style/Button"
+            android:layout_height="@dimen/space_large"
+            android:layout_below="@+id/btnRegister"
+            android:layout_marginEnd="@dimen/space_large"
+            android:layout_marginLeft="@dimen/space_large"
+            android:layout_marginRight="@dimen/space_large"
+            android:layout_marginStart="@dimen/space_large"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/floodlight_blue"
+            facebook:com_facebook_login_text="@string/com_facebook_loginview_log_in_button_long"
+            facebook:com_facebook_logout_text="@string/com_facebook_loginview_log_in_button_long" />
+
+    </RelativeLayout>
+
+
+
+
+
+
+</LinearLayout>
