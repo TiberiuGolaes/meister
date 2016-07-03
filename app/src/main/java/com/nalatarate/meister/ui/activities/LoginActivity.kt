@@ -53,7 +53,6 @@ class LoginActivity : BaseActivity() {
 
     fun login() {
         MeisterApplication.Companion.showProgressBar(this@LoginActivity)
-        Log.d("STATUS","SHOWED PROGRESS BAR")
         SessionRequester.login(emailLogin.text.toString(), passwordLogin.text.toString())
                 .subscribeOn(Schedulers.io()).subscribe(object : InertObserver<DataSession>() {
 
