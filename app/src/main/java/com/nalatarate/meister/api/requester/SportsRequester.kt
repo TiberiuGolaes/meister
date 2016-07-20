@@ -18,14 +18,14 @@ object SportsRequester {
     @JvmOverloads
     internal fun getAllSports(): Observable<List<Sport>> =
             service.getSports().map {
-                it.data.sports
+                it.data.sport
             }
 
     @JvmStatic
     @JvmOverloads
     internal fun getUserSports(): Observable<List<Sport>> =
             service.getUserSports(PrefManager.userId.orEmpty()).map {
-                it.data.sports
+                it.data.sport
             }
 
     @JvmStatic

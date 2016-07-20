@@ -27,14 +27,14 @@ const val P_RATED_USER_VAR = "{$P_RATED_USER}"
 
 internal interface SportsService {
 
-    @GET("getUserSports?userId={$P_USER_ID_VAR}")
-    fun getUserSports(@Path(P_USER_ID) userId: String): Observable<ResponseWithMeta<DataSports, MetaDate>>
+    @GET("getUserSports")
+    fun getUserSports(@Query(P_USER_ID) userId: String): Observable<ResponseWithMeta<DataSports, MetaDate>>
 
     @GET("getSports")
     fun getSports(): Observable<ResponseWithMeta<DataSports, MetaDate>>
 
-    @DELETE("removeUserSport?userId={$P_USER_ID_VAR}&&sportId={$P_SPORT_ID_VAR}")
-    fun removeSport(@Path(P_USER_ID) userId: String, @Path(P_SPORT_ID) sportId: String): Observable<Void>
+    @DELETE("removeUserSport")
+    fun removeSport(@Query(P_USER_ID) userId: String, @Query(P_SPORT_ID) sportId: String): Observable<Void>
 
     @POST("addUserSport")
     fun addUserSport(@Body user: BodyUserSport): Observable<Void>

@@ -9,20 +9,31 @@ import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v4.view.GravityCompat
+import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import com.nalatarate.meister.R
 import com.nalatarate.meister.api.PrefManager
+import com.nalatarate.meister.api.model.data.Sport
+import com.nalatarate.meister.api.requester.SportsRequester
+import com.nalatarate.meister.ui.adapters.SportsAdapter
+import com.nalatarate.meister.utils.EmptyStateRecyclerView
+import com.nalatarate.meister.utils.InertObserver
+import com.nalatarate.meister.utils.SimpleDividerItemDecoration
 import kotlinx.android.synthetic.main.activity_home.*
+import rx.schedulers.Schedulers
+import java.util.*
 
 
 class HomeActivity : BaseActivity() {
 
     private var descrVisible = false
+    private var sportVisible = false
     private var editing = false
-
+    lateinit var mSportsAdapter: SportsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +47,22 @@ class HomeActivity : BaseActivity() {
             descriptionContent.visibility = if (descrVisible) View.VISIBLE else View.GONE
             description_expand.isSelected = descrVisible
         }
+        sportHeader.setOnClickListener {
+            sportVisible = !sportVisible
+            sportsContent.visibility = if (sportVisible) View.VISIBLE else View.GONE
+            sport_expand.isSelected = sportVisible
+        }
+        rv_sports.layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.VERTICAL, false)
+        rv_sports.addItemDecoration(SimpleDividerItemDecoration(ContextCompat.getDrawable(baseContext, R.drawable.listview_divider)))
+        rv_sports.setHasFixedSize(true)
+        rv_sports.emptyView = findViewById(R.id.emptySport)
+        rv_sports.adapter = SportsAdapter()
+        (rv_sports.adapter as SportsAdapter).mParentActivity = this@HomeActivity
+        mSportsAdapter = rv_sports.adapter as SportsAdapter
+        emptySport.setOnClickListener{
+            startActivity(Intent(this@HomeActivity, SportsActivity::class.java))
+        }
+        getUserSports()
         tv_description.text = PrefManager.description
         tvEdit.setOnClickListener {
             if (!editing) {
@@ -69,11 +96,14 @@ class HomeActivity : BaseActivity() {
         }
         navigation_view.setNavigationItemSelectedListener { menuItem ->
             drawer_layout.closeDrawers();
-
             when (menuItem.itemId) {
                 R.id.action_logout -> {
                     PrefManager.clearSession()
                     startActivity(Intent(this@HomeActivity, FirstActivity::class.java))
+                    this.finish()
+                }
+                R.id.action_sports ->{
+                    startActivity(Intent(this@HomeActivity, SportsActivity::class.java))
                 }
             }
             true
@@ -106,9 +136,25 @@ class HomeActivity : BaseActivity() {
         menuInflater.inflate(R.menu.menu_full_home, menu);
         var drawable = menu.findItem(R.id.action_messages).getIcon();
         drawable = DrawableCompat.wrap(drawable);
-        DrawableCompat.setTint(drawable, resources.getColor(R.color.colorAccent, this@HomeActivity.theme));
+        DrawableCompat.setTint(drawable, ContextCompat.getColor(this, R.color.colorAccent));
         menu.findItem(R.id.action_messages).icon = drawable;
         return true;
+    }
+
+    fun getUserSports() {
+        SportsRequester.getUserSports().subscribeOn(Schedulers.io())
+                .subscribe(object : InertObserver<List<Sport>>() {
+                    override fun onNext(sports: List<Sport>) {
+                        val sports2 = sports.plus(Sport("1", "Football"))
+                        Log.d("Sports size", sports2.size.toString())
+                        mSportsAdapter.addSports(sports2)
+                    }
+
+                    override fun onError(e: Throwable?) {
+                        Log.d("Error", e?.message)
+                    }
+                })
+
     }
 
     fun getTintedDrawable(@DrawableRes drawableResId: Int, @ColorRes colorResId: Int): Drawable? {

@@ -10,6 +10,7 @@
     <dimen name="space_medium">24dp</dimen>
     <dimen name="space_medium_large">36dp</dimen>
     <dimen name="space_large">48dp</dimen>
+    <dimen name="space_large_huge">60dp</dimen>
     <dimen name="space_huge">72dp</dimen>
     <dimen name="logo_size">120dp</dimen>
 

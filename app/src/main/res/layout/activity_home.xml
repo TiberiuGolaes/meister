@@ -83,7 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:background="@drawable/header_description">
+                        android:background="@drawable/header_sports">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -180,24 +180,51 @@
 
                     <RelativeLayout
                         android:id="@+id/sportsContent"
+                        android:layout_below="@+id/sportHeader"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        >
 
-                        <android.support.v7.widget.RecyclerView
+                        <com.nalatarate.meister.utils.EmptyStateRecyclerView
                             android:id="@+id/rv_sports"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                        </android.support.v7.widget.RecyclerView>
+                        </com.nalatarate.meister.utils.EmptyStateRecyclerView>
+
+                        <RelativeLayout
+                            android:id="@+id/emptySport"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:background="@color/white">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/space_medium"
+                                android:textColor="@color/colorAccent"
+                                android:text="@string/empty_state_sports"/>
+
+                        </RelativeLayout>
                     </RelativeLayout>
                 </RelativeLayout>
-                <android.support.v7.widget.RecyclerView
+
+                <com.nalatarate.meister.utils.EmptyStateRecyclerView
                     android:id="@+id/rv_events"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                </android.support.v7.widget.RecyclerView>
+                </com.nalatarate.meister.utils.EmptyStateRecyclerView>
 
+                <RelativeLayout
+                    android:id="@+id/emptyEvents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+
+                </RelativeLayout>
             </RelativeLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>

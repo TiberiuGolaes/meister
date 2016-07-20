@@ -6,4 +6,4 @@ import com.nalatarate.meister.api.meta.Data
 /**
  * Created by tiberiugolaes on 02/07/16.
  */
-internal class DataSports(@Expose val sports: List<Sport>) : Data
+internal class DataSports(@Expose val sport: List<Sport>) : Data

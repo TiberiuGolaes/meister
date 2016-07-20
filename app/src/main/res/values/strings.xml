@@ -20,4 +20,8 @@
     <string name="user_done">Done</string>
     <string name="action_logout">Log out</string>
     <string name="menu_message">Messages</string>
+    <string name="empty_state_sports">You have no sports selected. Tap here and you can select some!</string>
+    <string name="empty_state_all_sports">There are no sports selected.</string>
+    <string name="remove_sport">Sport removed!</string>
+    <string name="sports_menu">Manage Sports</string>
 </resources>

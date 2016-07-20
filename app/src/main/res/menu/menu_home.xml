@@ -2,12 +2,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.activities.HomeActivity">
+    <group android:id="@+id/profile">
+        <item
+            android:id="@+id/action_sports"
+            android:icon="@drawable/logout"
+            android:title="@string/sports_menu"
+            app:showAsAction="never" />
+    </group>
     <group android:id="@+id/logout">
         <item
             android:id="@+id/action_logout"
             android:icon="@drawable/logout"
             android:title="@string/action_logout"
             app:showAsAction="never" />
+
     </group>
 
 </menu>
